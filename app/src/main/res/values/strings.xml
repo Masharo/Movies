@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Movies</string>
     <string name="json_main_errorloading">"При загрузке произошла ошибка!!!"</string>
+    <string name="imageview_movieitem_description">Обложка фильма</string>
+    <string name="textview_main_sortpopularity">По популярности</string>
+    <string name="textview_main_sortreating">По рейтингу</string>
 </resources>
