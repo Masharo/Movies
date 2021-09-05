@@ -11,6 +11,11 @@ import java.util.Objects;
 
 public class JSONUtils {
 
+
+    public static final String  BASE_POSTER_URL = "https://image.tmdb.org/t/p/",
+                                SMALL_POSTER_SIZE = "w185",
+                                BIG_POSTER_SIZE = "w780";
+
     public static final String  KEY_RESULTS = "results",
                                 KEY_ID = "id",
                                 KEY_VOTE_COUNT = "vote_count",
@@ -43,7 +48,8 @@ public class JSONUtils {
                         objectMovie.getString(KEY_TITLE),
                         objectMovie.getString(KEY_ORIGINAL_TITLE),
                         objectMovie.getString(KEY_OVERVIEW),
-                        objectMovie.getString(KEY_POSTER_PATH),
+                        BASE_POSTER_URL + SMALL_POSTER_SIZE + objectMovie.getString(KEY_POSTER_PATH),
+                        BASE_POSTER_URL + BIG_POSTER_SIZE + objectMovie.getString(KEY_POSTER_PATH),
                         objectMovie.getString(KEY_BACKGROUND_PATH),
                         objectMovie.getString(KEY_RELEASE_DATA),
                         objectMovie.getDouble(KEY_VOTE_AVERAGE)));

@@ -10,14 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movies.data.Movie;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.zip.Inflater;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
     private List<Movie> movies;
+    private OnPosterClickListener onPosterClickListener;
+    private OnReachEndListener onReachEndListener;
 
     public MovieAdapter() {
         this.movies = new ArrayList<>();
@@ -26,16 +30,20 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     @NonNull
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_item, parent, false);
         return new MovieViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
-        Movie movie = movies.get(position);
+        if (position > movies.size() - 4 && Objects.nonNull(onReachEndListener)) {
+            onReachEndListener.OnReachEnd();
+        }
 
-        View view = View.inflate(holder.image.getContext(), R.layout.movie_item, )
+        Movie movie = movies.get(position);
+        ImageView imageView = holder.image;
+
+        Picasso.get().load(movie.getPosterPath()).into(imageView);
     }
 
     @Override
@@ -43,14 +51,36 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         return movies.size();
     }
 
+    @FunctionalInterface
+    interface OnPosterClickListener {
+        void onPosterClick(int position);
+    }
+
+    @FunctionalInterface
+    interface OnReachEndListener {
+        void OnReachEnd();
+    }
+
+    public void setOnPosterClickListener(OnPosterClickListener onPosterClickListener) {
+        this.onPosterClickListener = onPosterClickListener;
+    }
+
+    public void setOnReachEndListener(OnReachEndListener onReachEndListener) {
+        this.onReachEndListener = onReachEndListener;
+    }
+
     class MovieViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView image;
+        private final ImageView image;
 
         public MovieViewHolder(@NonNull View itemView) {
             super(itemView);
-
             image = itemView.findViewById(R.id.imageview_movieitem_smallposter);
+            itemView.setOnClickListener(view -> {
+                if (Objects.nonNull(onPosterClickListener)) {
+                    onPosterClickListener.onPosterClick(getAdapterPosition());
+                }
+            });
         }
     }
 

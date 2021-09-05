@@ -34,15 +34,14 @@ public class NetworkUtils {
     private static final String LANGUAGE_VALUE = "ru-RU";
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private static URL buildURL(int sortBy, int page) {
+    private static URL buildURL(SortRequest sortBy, int page) {
 
         URL result = null;
-        String methodOfSort = SortRequest.getFromId(sortBy).toString();
 
         Uri uri = Uri.parse(BASE_URL).buildUpon()
                 .appendQueryParameter(PARAMS_API_KEY, API_KEY)
                 .appendQueryParameter(PARAMS_LANGUAGE, LANGUAGE_VALUE)
-                .appendQueryParameter(PARAMS_SORT_BY, methodOfSort)
+                .appendQueryParameter(PARAMS_SORT_BY, sortBy.toString())
                 .appendQueryParameter(PARAMS_PAGE, String.valueOf(page))
                 .build();
 
@@ -55,7 +54,7 @@ public class NetworkUtils {
         return result;
     }
 
-    public static JSONObject getJSONFromNetwork(int sortBy, int page) {
+    public static JSONObject getJSONFromNetwork(SortRequest sortBy, int page) {
         URL url = buildURL(sortBy, page);
         JSONObject jsonObject = null;
         try {
