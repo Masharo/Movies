@@ -1,7 +1,12 @@
 package com.example.movies.data;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "movies")
 public class Movie {
 
+    @PrimaryKey
     private int id,
                 voteCount;
 
