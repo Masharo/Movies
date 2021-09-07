@@ -7,9 +7,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.movies.data.MainViewModel;
 import com.example.movies.data.Movie;
 import com.example.movies.utils.JSONUtils;
 import com.example.movies.utils.NetworkUtils;
@@ -17,6 +21,8 @@ import com.example.movies.utils.NetworkUtils;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,11 +32,17 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MovieAdapter adapter;
 
+    private MainViewModel viewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        viewModel = ViewModelProvider
+                    .AndroidViewModelFactory
+                    .getInstance(getApplication())
+                    .create(MainViewModel.class);
         textPopularity = findViewById(R.id.textview_main_sortpopularity);
         textRating = findViewById(R.id.textview_main_sortrating);
         switchSort = findViewById(R.id.switch_main_switchsort);
@@ -52,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
         adapter.setOnReachEndListener(() -> {
             Toast.makeText(MainActivity.this, "Конец Страницы", Toast.LENGTH_LONG).show();
         });
+
+        LiveData<List<Movie>> moviesFromLiveData = viewModel.getMovies();
+        moviesFromLiveData.observe(this, movies -> adapter.setMovies(movies));
     }
 
     public void onClickSortRating(View view) {
@@ -75,9 +90,19 @@ public class MainActivity extends AppCompatActivity {
             textRating.setTextColor(getColor(R.color.white));
         }
 
-        JSONObject jsonObject = NetworkUtils.getJSONFromNetwork(methodSorting , 1);
+        downloadData(methodSorting, 1);
+    }
+
+    private void downloadData(SortRequest methodSorting, int page) {
+        JSONObject jsonObject = NetworkUtils.getJSONFromNetwork(methodSorting , page);
         ArrayList<Movie> movies = JSONUtils.getMoviesFromJSON(jsonObject);
 
-        adapter.setMovies(movies);
+        if (Objects.nonNull(movies) && !movies.isEmpty()) {
+            viewModel.deleteAllMovies();
+
+            for (Movie movie : movies) {
+                viewModel.insertMovie(movie);
+            }
+        }
     }
 }

@@ -1,9 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DetailActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageview_detail_poster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/imageview_detail_descriptionposter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/verticalmargin_detail_textdescription"
+        android:layout_marginHorizontal="@dimen/horizontalmargin_detail_textdescription"
+        app:layout_constraintTop_toBottomOf="@id/imageview_detail_poster"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/textview_detail_texttitle" />
+
+    <TextView
+        android:id="@+id/textview_detail_texttitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/verticalmargin_detail_textdescription"
+        android:layout_marginHorizontal="@dimen/horizontalmargin_detail_textdescription"
+        app:layout_constraintTop_toBottomOf="@id/imageview_detail_poster"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/verticalmargin_detail_textdescription"
+        android:layout_marginHorizontal="@dimen/horizontalmargin_detail_textdescription"
+        app:layout_constraintTop_toBottomOf="@id/textview_detail_texttitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/textview_detail_textoriginaltitle" />
+
+    <TextView
+        android:id="@+id/textview_detail_textoriginaltitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/verticalmargin_detail_textdescription"
+        android:layout_marginHorizontal="@dimen/horizontalmargin_detail_textdescription"
+        app:layout_constraintTop_toBottomOf="@id/textview_detail_texttitle"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/verticalmargin_detail_textdescription"
+        android:layout_marginHorizontal="@dimen/horizontalmargin_detail_textdescription"
+        app:layout_constraintTop_toBottomOf="@id/textview_detail_textoriginaltitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/textview_detail_textrating" />
+
+    <TextView
+        android:id="@+id/textview_detail_textrating"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/verticalmargin_detail_textdescription"
+        android:layout_marginHorizontal="@dimen/horizontalmargin_detail_textdescription"
+        app:layout_constraintTop_toBottomOf="@id/textview_detail_textoriginaltitle"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/verticalmargin_detail_textdescription"
+        android:layout_marginHorizontal="@dimen/horizontalmargin_detail_textdescription"
+        app:layout_constraintTop_toBottomOf="@id/textview_detail_textrating"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/textview_detail_textdate" />
+
+    <TextView
+        android:id="@+id/textview_detail_textdate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/verticalmargin_detail_textdescription"
+        android:layout_marginHorizontal="@dimen/horizontalmargin_detail_textdescription"
+        app:layout_constraintTop_toBottomOf="@id/textview_detail_textrating"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/verticalmargin_detail_textdescription"
+        android:layout_marginHorizontal="@dimen/horizontalmargin_detail_textdescription"
+        app:layout_constraintTop_toBottomOf="@id/textview_detail_textdate"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/textview_detail_textdescription" />
+
+    <TextView
+        android:id="@+id/textview_detail_textdescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/verticalmargin_detail_textdescription"
+        android:layout_marginHorizontal="@dimen/horizontalmargin_detail_textdescription"
+        app:layout_constraintTop_toBottomOf="@id/textview_detail_textdate"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_center" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
