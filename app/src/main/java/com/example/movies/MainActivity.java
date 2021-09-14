@@ -1,5 +1,6 @@
 package com.example.movies;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Switch;
@@ -59,7 +60,12 @@ public class MainActivity extends AppCompatActivity {
         switchSort.setChecked(false);
 
         adapter.setOnPosterClickListener(position -> {
-            Toast.makeText(MainActivity.this, "Позиция " + position, Toast.LENGTH_LONG).show();
+            Movie movie = adapter.getMovies().get(position);
+
+            Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+            intent.putExtra(Movie.ID_NAME, movie.getId());
+
+            startActivity(intent);
         });
         adapter.setOnReachEndListener(() -> {
             Toast.makeText(MainActivity.this, "Конец Страницы", Toast.LENGTH_LONG).show();

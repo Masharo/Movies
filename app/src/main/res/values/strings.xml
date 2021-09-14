@@ -11,4 +11,6 @@
     <string name="textview_detail_textrating">Рейтинг:</string>
     <string name="textview_detail_textdate">Дата релиза:</string>
     <string name="textview_detail_textdescription">Описание:</string>
+    <string name="toast_detail_addfavourite">Добавлено в избранное</string>
+    <string name="toast_detail_deletefavourite">Удалено из избранного</string>
 </resources>

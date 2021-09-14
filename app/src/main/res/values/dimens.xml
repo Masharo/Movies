@@ -2,4 +2,5 @@
 <resources>
     <dimen name="verticalmargin_detail_textdescription">5dp</dimen>
     <dimen name="horizontalmargin_detail_textdescription">8dp</dimen>
+    <dimen name="imageview_detail_sizestar">60dp</dimen>
 </resources>

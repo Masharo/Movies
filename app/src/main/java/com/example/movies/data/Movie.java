@@ -1,9 +1,13 @@
 package com.example.movies.data;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 
 @Entity(tableName = "movies", primaryKeys = "id")
 public class Movie {
+
+    @Ignore
+    public static final String ID_NAME = "id";
 
     private int id,
                 voteCount;
