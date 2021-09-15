@@ -2,11 +2,15 @@ package com.example.movies;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -69,6 +73,32 @@ public class DetailActivity extends AppCompatActivity {
         releaseDate.setText(movie.getReleaseDate());
         description.setText(movie.getOverview());
         setFavouriteMovie();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.item_menu_root:
+                Intent intentMain = new Intent(this, MainActivity.class);
+                startActivity(intentMain);
+                break;
+
+            case R.id.item_menu_favourite:
+                Intent intentFavourite = new Intent(this, FavouriteActivity.class);
+                startActivity(intentFavourite);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void onClickChangeStar(View view) {

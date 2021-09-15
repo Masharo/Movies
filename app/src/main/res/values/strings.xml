@@ -13,4 +13,6 @@
     <string name="textview_detail_textdescription">Описание:</string>
     <string name="toast_detail_addfavourite">Добавлено в избранное</string>
     <string name="toast_detail_deletefavourite">Удалено из избранного</string>
+    <string name="item_menu_root">Главная</string>
+    <string name="item_menu_favourite">Избранное</string>
 </resources>

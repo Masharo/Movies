@@ -11,12 +11,12 @@ import java.util.Objects;
 
 public class JSONUtils {
 
-
-    public static final String  BASE_POSTER_URL = "https://image.tmdb.org/t/p/",
+    private static final String  BASE_POSTER_URL = "https://image.tmdb.org/t/p/",
                                 SMALL_POSTER_SIZE = "w185",
                                 BIG_POSTER_SIZE = "w780";
 
-    public static final String  KEY_RESULTS = "results",
+    private static final String //Информация о фильмах
+                                KEY_RESULTS = "results",
                                 KEY_ID = "id",
                                 KEY_VOTE_COUNT = "vote_count",
                                 KEY_TITLE = "title",
@@ -25,7 +25,15 @@ public class JSONUtils {
                                 KEY_POSTER_PATH = "poster_path",
                                 KEY_BACKGROUND_PATH = "backdrop_path",
                                 KEY_RELEASE_DATA = "release_date",
-                                KEY_VOTE_AVERAGE = "vote_average";
+                                KEY_VOTE_AVERAGE = "vote_average",
+
+                                //Отзывы
+                                KEY_AUTHOR = "author",
+                                KEY_CONTENT = "content",
+
+                                //Видео
+                                KEY_KEY = "key",
+                                KEY_NAME = "name";
 
     public static ArrayList<Movie> getMoviesFromJSON(JSONObject jsonObject) {
 
