@@ -11,13 +11,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.movies.adapters.MovieAdapter;
 import com.example.movies.data.MainViewModel;
 import com.example.movies.data.Movie;
 import com.example.movies.utils.JSONUtils;
@@ -25,11 +28,12 @@ import com.example.movies.utils.NetworkUtils;
 
 import org.json.JSONObject;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<JSONObject> {
 
     private TextView textPopularity,
                      textRating;
@@ -39,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
     private MovieAdapter adapter;
 
     private MainViewModel viewModel;
+
+    public static final int LOADER_ID = 35;
+    private LoaderManager loaderManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerview_main_films);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         adapter = new MovieAdapter();
+
+        loaderManager = LoaderManager.getInstance(this);
 
         recyclerView.setAdapter(adapter);
 
@@ -73,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
         adapter.setOnReachEndListener(() -> {
-            Toast.makeText(MainActivity.this, "Конец Страницы", Toast.LENGTH_LONG).show();
+            //Toast.makeText(MainActivity.this, "Конец Страницы", Toast.LENGTH_LONG).show();
         });
 
         LiveData<List<Movie>> moviesFromLiveData = viewModel.getMovies();
@@ -131,7 +140,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void downloadData(SortRequest methodSorting, int page) {
-        JSONObject jsonObject = NetworkUtils.getJSONFromNetwork(methodSorting , page);
+        URL url = NetworkUtils.buildURL(methodSorting, page);
+
+        Bundle bundle = new Bundle();
+        bundle.putString(NetworkUtils.KEY_URL, url.toString());
+
+        loaderManager.restartLoader(LOADER_ID, bundle, this);
+    }
+
+    @NonNull
+    @Override
+    public Loader<JSONObject> onCreateLoader(int id, @Nullable Bundle args) {
+        NetworkUtils.JSONLoader jsonLoader = new NetworkUtils.JSONLoader(this, args);
+        return jsonLoader;
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader<JSONObject> loader, JSONObject jsonObject) {
         ArrayList<Movie> movies = JSONUtils.getMoviesFromJSON(jsonObject);
 
         if (Objects.nonNull(movies) && !movies.isEmpty()) {
@@ -141,5 +166,12 @@ public class MainActivity extends AppCompatActivity {
                 viewModel.insertMovie(movie);
             }
         }
+
+        loaderManager.destroyLoader(LOADER_ID);
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<JSONObject> loader) {
+
     }
 }

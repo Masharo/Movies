@@ -2,13 +2,16 @@ package com.example.movies.data;
 
 import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
-@Entity(tableName = "movies", primaryKeys = "id")
+@Entity(tableName = "movies")
 public class Movie {
 
     @Ignore
     public static final String ID_NAME = "id";
 
+    @PrimaryKey(autoGenerate = true)
+    private int uniqueId;
     private int id,
                 voteCount;
 
@@ -22,6 +25,16 @@ public class Movie {
 
     private double voteAverage;
 
+    public Movie(int uniqueId, int id, int voteCount, String title, String originalTitle, String overview,
+                 String posterPath, String bigPosterPath, String backdropPath, String releaseDate, double voteAverage) {
+
+        this(id, voteCount, title, originalTitle, overview,
+             posterPath, bigPosterPath, backdropPath, releaseDate, voteAverage);
+
+        this.uniqueId = uniqueId;
+    }
+
+    @Ignore
     public Movie(int id, int voteCount, String title, String originalTitle, String overview,
                  String posterPath, String bigPosterPath, String backdropPath, String releaseDate, double voteAverage) {
 
@@ -35,6 +48,14 @@ public class Movie {
         this.backdropPath = backdropPath;
         this.releaseDate = releaseDate;
         this.voteAverage = voteAverage;
+    }
+
+    public int getUniqueId() {
+        return uniqueId;
+    }
+
+    public void setUniqueId(int uniqueId) {
+        this.uniqueId = uniqueId;
     }
 
     public int getId() {

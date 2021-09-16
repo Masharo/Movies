@@ -1,4 +1,4 @@
-package com.example.movies;
+package com.example.movies.adapters;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.movies.R;
 import com.example.movies.data.Movie;
 import com.squareup.picasso.Picasso;
 
@@ -29,7 +30,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     @NonNull
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_item, parent, false);
+        View view = LayoutInflater
+                    .from(parent.getContext())
+                    .inflate(R.layout.movie_item, parent, false);
         return new MovieViewHolder(view);
     }
 
@@ -51,12 +54,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     }
 
     @FunctionalInterface
-    interface OnPosterClickListener {
+    public interface OnPosterClickListener {
         void onPosterClick(int position);
     }
 
     @FunctionalInterface
-    interface OnReachEndListener {
+    public interface OnReachEndListener {
         void OnReachEnd();
     }
 

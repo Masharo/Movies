@@ -15,4 +15,5 @@
     <string name="toast_detail_deletefavourite">Удалено из избранного</string>
     <string name="item_menu_root">Главная</string>
     <string name="item_menu_favourite">Избранное</string>
+    <string name="imageview_trailer_play">Запустить трейлер</string>
 </resources>

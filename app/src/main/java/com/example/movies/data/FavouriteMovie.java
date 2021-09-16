@@ -6,12 +6,12 @@ import androidx.room.Ignore;
 @Entity(tableName = "favourite_movies")
 public class FavouriteMovie extends Movie {
 
-    public FavouriteMovie(int id, int voteCount, String title, String originalTitle, String overview, String posterPath, String bigPosterPath, String backdropPath, String releaseDate, double voteAverage) {
-        super(id, voteCount, title, originalTitle, overview, posterPath, bigPosterPath, backdropPath, releaseDate, voteAverage);
+    public FavouriteMovie(int uniqueId, int id, int voteCount, String title, String originalTitle, String overview, String posterPath, String bigPosterPath, String backdropPath, String releaseDate, double voteAverage) {
+        super(uniqueId, id, voteCount, title, originalTitle, overview, posterPath, bigPosterPath, backdropPath, releaseDate, voteAverage);
     }
 
     @Ignore
     public FavouriteMovie(Movie movie) {
-        super(movie.getId(), movie.getVoteCount(), movie.getTitle(), movie.getOriginalTitle(), movie.getOverview(), movie.getPosterPath(), movie.getBigPosterPath(), movie.getBackdropPath(), movie.getReleaseDate(), movie.getVoteAverage());
+        super(movie.getUniqueId(), movie.getId(), movie.getVoteCount(), movie.getTitle(), movie.getOriginalTitle(), movie.getOverview(), movie.getPosterPath(), movie.getBigPosterPath(), movie.getBackdropPath(), movie.getReleaseDate(), movie.getVoteAverage());
     }
 }
