@@ -47,4 +47,14 @@
         app:layout_constraintTop_toBottomOf="@id/switch_main_switchsort"
         app:layout_constraintBottom_toBottomOf="parent" />
 
+    <ProgressBar
+        android:id="@+id/progressbar_main_loadingpage"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/switch_main_switchsort"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
