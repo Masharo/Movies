@@ -3,4 +3,7 @@
     <dimen name="verticalmargin_detail_textdescription">5dp</dimen>
     <dimen name="horizontalmargin_detail_textdescription">8dp</dimen>
     <dimen name="imageview_detail_sizestar">60dp</dimen>
+    <dimen name="imageview_detail_starmargin">16dp</dimen>
+    <dimen name="progressbar_main_size">42dp</dimen>
+    <dimen name="imageview_trailer_playsize">60dp</dimen>
 </resources>

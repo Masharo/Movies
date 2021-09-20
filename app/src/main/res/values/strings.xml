@@ -1,19 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Movies</string>
-    <string name="json_main_errorloading">"При загрузке произошла ошибка!!!"</string>
-    <string name="imageview_movieitem_description">Обложка фильма</string>
-    <string name="textview_main_sortpopularity">По популярности</string>
-    <string name="textview_main_sortreating">По рейтингу</string>
-    <string name="errormessage_mainviewmodel_getmoviebyid">При загрзке изоображения произошла ошибка</string>
-    <string name="imageview_detail_descriptionposter">Обложка фильма</string>
-    <string name="textview_detail_texttitle">Название:</string>
-    <string name="textview_detail_textoriginaltitle">Оригинальное название:</string>
-    <string name="textview_detail_textrating">Рейтинг:</string>
-    <string name="textview_detail_textdate">Дата релиза:</string>
-    <string name="textview_detail_textdescription">Описание:</string>
-    <string name="toast_detail_addfavourite">Добавлено в избранное</string>
-    <string name="toast_detail_deletefavourite">Удалено из избранного</string>
-    <string name="item_menu_root">Главная</string>
-    <string name="item_menu_favourite">Избранное</string>
-    <string name="imageview_trailer_play">Запустить трейлер</string>
+    <string name="json_main_errorloading">"An error occurred while loading !!!"</string>
+    <string name="imageview_movieitem_description">Poster film</string>
+    <string name="textview_main_sortpopularity">By popularity</string>
+    <string name="textview_main_sortreating">By rating</string>
+    <string name="errormessage_mainviewmodel_getmoviebyid">An error occurred while loading the image</string>
+    <string name="imageview_detail_descriptionposter">Poster film</string>
+    <string name="textview_detail_texttitle">Name:</string>
+    <string name="textview_detail_textoriginaltitle">Original name:</string>
+    <string name="textview_detail_textrating">Rating:</string>
+    <string name="textview_detail_textdate">Date of release:</string>
+    <string name="textview_detail_textdescription">Description:</string>
+    <string name="toast_detail_addfavourite">Added to favorites</string>
+    <string name="toast_detail_deletefavourite">Removed from favorites</string>
+    <string name="item_menu_root">Home</string>
+    <string name="item_menu_favourite">Favorites</string>
+    <string name="imageview_trailer_play">Launch Trailer</string>
+    <string name="imageview_detail_startdescription">Add to favorites button</string>
 </resources>

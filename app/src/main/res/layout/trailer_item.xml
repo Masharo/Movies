@@ -11,8 +11,8 @@
 
         <ImageView
             android:id="@+id/textview_trailer_play"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/imageview_trailer_playsize"
+            android:layout_height="@dimen/imageview_trailer_playsize"
             android:src="@android:drawable/ic_media_play"
             android:contentDescription="@string/imageview_trailer_play"
             app:layout_constraintTop_toTopOf="parent"
@@ -24,6 +24,8 @@
             android:id="@+id/textview_trailer_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/violet_back"
+            android:textSize="16sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/textview_trailer_play"
             app:layout_constraintEnd_toEndOf="parent"

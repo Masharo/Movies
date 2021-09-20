@@ -31,6 +31,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
 
 public class DetailActivity extends AppCompatActivity {
@@ -56,10 +57,14 @@ public class DetailActivity extends AppCompatActivity {
 
     private MainViewModel viewModel;
 
+    private static String lang;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        lang = Locale.getDefault().getLanguage();
 
         imageFilmBigPoster = findViewById(R.id.imageview_detail_poster);
         imageStar = findViewById(R.id.imageview_detail_star);
@@ -86,7 +91,7 @@ public class DetailActivity extends AppCompatActivity {
 
         movie = viewModel.getMovieById(id);
 
-        Picasso.get().load(movie.getBigPosterPath()).into(imageFilmBigPoster);
+        Picasso.get().load(movie.getBigPosterPath()).placeholder(R.drawable.poster).into(imageFilmBigPoster);
         title.setText(movie.getTitle());
         originalTitle.setText(movie.getOriginalTitle());
         rating.setText(String.valueOf(movie.getVoteAverage()));
@@ -94,22 +99,19 @@ public class DetailActivity extends AppCompatActivity {
         description.setText(movie.getOverview());
         setFavouriteMovie();
 
-        reviewAdapter = new ReviewAdapter();
+        JSONObject jsonObjectReviews = NetworkUtils.getJSONObjectForReviews(id, lang);
+        ArrayList<Review> reviews = JSONUtils.getReviewsFromJSON(jsonObjectReviews);
+        reviewAdapter = new ReviewAdapter(reviews);
         recyclerViewReviews.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewReviews.setAdapter(reviewAdapter);
-        JSONObject jsonObjectReviews = NetworkUtils.getJSONObjectForReviews(id);
-        ArrayList<Review> reviews = JSONUtils.getReviewsFromJSON(jsonObjectReviews);
-        reviewAdapter.setReviews(reviews);
 
-        trailerAdapter = new TrailerAdapter();
+        JSONObject jsonObjectTrailers = NetworkUtils.getJSONObjectForVideos(id, lang);
+        ArrayList<Trailer> trailers = JSONUtils.getTrailersFromJSON(jsonObjectTrailers);
+        trailerAdapter = new TrailerAdapter(trailers);
         recyclerViewTrailers.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewTrailers.setAdapter(trailerAdapter);
-        JSONObject jsonObjectTrailers = NetworkUtils.getJSONObjectForVideos(id);
-        ArrayList<Trailer> trailers = JSONUtils.getTrailersFromJSON(jsonObjectTrailers);
-        trailerAdapter.setTrailers(trailers);
 
         trailerAdapter.setOnTrailerClickListener(url -> {
-            Toast.makeText(getApplicationContext(), url, Toast.LENGTH_SHORT).show();
             Intent intentYouTube = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             startActivity(intentYouTube);
         });

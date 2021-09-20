@@ -15,6 +15,8 @@
             android:id="@+id/textview_review_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/violet_back"
+            android:textSize="16sp"
             android:layout_margin="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

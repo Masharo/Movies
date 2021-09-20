@@ -41,7 +41,7 @@ public class JSONUtils {
     public static ArrayList<Review> getReviewsFromJSON(JSONObject jsonObject) {
 
         if (Objects.isNull(jsonObject)) {
-            return null;
+            return new ArrayList<>();
         }
 
         ArrayList<Review> result = new ArrayList<>();
@@ -68,7 +68,7 @@ public class JSONUtils {
     public static ArrayList<Trailer> getTrailersFromJSON(JSONObject jsonObject) {
 
         if (Objects.isNull(jsonObject)) {
-            return null;
+            return new ArrayList<>();
         }
 
         ArrayList<Trailer> result = new ArrayList<>();

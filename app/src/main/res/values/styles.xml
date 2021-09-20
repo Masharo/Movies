@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="textview_detail_label">
+        <item name="android:layout_marginVertical">@dimen/verticalmargin_detail_textdescription</item>
+        <item name="android:layout_marginHorizontal">@dimen/horizontalmargin_detail_textdescription</item>
+        <item name="android:textColor">@color/violet_back</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

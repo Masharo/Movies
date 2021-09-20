@@ -20,6 +20,10 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.TrailerV
     private ArrayList<Trailer> trailers;
     private onTrailerClickListener onTrailerClickListener;
 
+    public TrailerAdapter(ArrayList<Trailer> trailers) {
+        setTrailers(trailers);
+    }
+
     public void setTrailers(ArrayList<Trailer> trailers) {
         this.trailers = trailers;
         notifyDataSetChanged();

@@ -33,6 +33,7 @@ import org.json.JSONObject;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<JSONObject> {
@@ -54,10 +55,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private static int page = 1;
     private static boolean isLoading = false;
 
+    private static String lang;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        lang = Locale.getDefault().getLanguage();
 
         viewModel = ViewModelProvider
                     .AndroidViewModelFactory
@@ -167,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     private void downloadData(SortRequest methodSorting, int page) {
-        URL url = NetworkUtils.buildURL(methodSorting, page);
+        URL url = NetworkUtils.buildURL(methodSorting, page, lang);
 
         Bundle bundle = new Bundle();
         bundle.putString(NetworkUtils.KEY_URL, url.toString());
